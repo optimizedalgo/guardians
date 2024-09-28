@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { auth, db } from './firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './LandingPage.css';
 
 function LandingPage() {
+  const navigate = useNavigate(); // Initialize navigate
   const [language, setLanguage] = useState('en');
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
@@ -79,7 +81,7 @@ function LandingPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('Logged in successfully');
-      handleCloseModal();
+      navigate('/insured'); // Now this works
     } catch (error) {
       setError('Invalid email or password');
     } finally {
@@ -123,16 +125,16 @@ function LandingPage() {
       <header className="language-section text-center">
         <h2>{content[language].welcome}</h2>
         <div className="auth-buttons text-center">
-        <button className="btn btn-primary m-2" onClick={handleLoginClick}>{content[language].login}</button>
-        <button className="btn btn-secondary m-2" onClick={handleSignupClick}>{content[language].signup}</button>
-      </div>
+          <button className="btn btn-primary m-2" onClick={handleLoginClick}>{content[language].login}</button>
+          <button className="btn btn-secondary m-2" onClick={handleSignupClick}>{content[language].signup}</button>
+        </div>
       </header>
       <select value={language} onChange={handleLanguageChange} className="language-select">
-          <option value="en">English</option>
-          <option value="es">Español</option>
-          <option value="hi">हिन्दी</option>
-          <option value="vi">Tiếng Việt</option>
-        </select>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="hi">हिन्दी</option>
+        <option value="vi">Tiếng Việt</option>
+      </select>
 
       {(showLogin || showSignup) && (
         <div className="modal">
