@@ -164,7 +164,7 @@ function LandingPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button type="submit" className="btn" disabled={loading}>
+              <button type="submit" className="btns" disabled={loading}>
                 {loading ? 'Loading...' : (showLogin ? content[language].login : content[language].signup)}
               </button>
             </form>
