@@ -1,15 +1,15 @@
-/* ... (previous CSS styles remain the same) ... */
-
 /* Insurance Question Page styles */
 .insurance-question-page {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background-color: #282c34;
-  }
-  
-  .question-container {
+    position: relative; /* Allows absolute positioning for the LanguageSelector */
+}
+
+.question-container {
     background-color: #20232a;
     padding: 3rem;
     border-radius: 8px;
@@ -17,38 +17,44 @@
     text-align: center;
     max-width: 500px;
     width: 90%;
-  }
-  
-  .question-title {
+}
+
+.question-title {
     font-size: 2rem;
     color: #61dafb;
     margin-bottom: 2rem;
-  }
-  
-  .button-container {
+}
+
+.button-container {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-  }
-  
-  /* Responsive design for Insurance Question Page */
-  @media (max-width: 768px) {
+}
+
+/* Style for the LanguageSelector at the bottom center */
+.language-selector {
+    position: absolute;
+    bottom: 20px; /* Adjust the distance from the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Responsive design for Insurance Question Page */
+@media (max-width: 768px) {
     .question-container {
-      padding: 2rem;
+        padding: 2rem;
     }
-  
+
     .question-title {
-      font-size: 1.5rem;
+        font-size: 1.5rem;
     }
-  
+
     .button-container {
-      flex-direction: column;
-      gap: 1rem;
+        flex-direction: column;
+        gap: 1rem;
     }
-  
+
     .btn {
-      width: 100%;
+        width: 100%;
     }
-  }
-  
-  /* ... (rest of the CSS remains the same) ... */
+}

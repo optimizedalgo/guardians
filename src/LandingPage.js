@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { auth, db } from './firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
+import LanguageSelector from './LanguageSelector'; // Import the LanguageSelector component
 
-function LandingPage() {
-  const navigate = useNavigate(); // Initialize navigate
-  const [language, setLanguage] = useState('en');
+function LandingPage({ language, setLanguage }) {
+  const navigate = useNavigate();
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [email, setEmail] = useState('');
@@ -52,7 +52,7 @@ function LandingPage() {
   };
 
   const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
+    setLanguage(e.target.value); // This will update the language globally
   };
 
   const handleLoginClick = () => {
@@ -81,7 +81,7 @@ function LandingPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('Logged in successfully');
-      navigate('/insured'); // Now this works
+      navigate('/insured'); // Language will be retained when navigating
     } catch (error) {
       setError('Invalid email or password');
     } finally {
@@ -96,7 +96,7 @@ function LandingPage() {
     try {
       const userDocRef = doc(db, 'users', email);
       const userDoc = await getDoc(userDocRef);
-      
+
       if (userDoc.exists()) {
         setError('User already exists. Please login.');
         return;
@@ -125,16 +125,12 @@ function LandingPage() {
       <header className="language-section text-center">
         <h2>{content[language].welcome}</h2>
         <div className="auth-buttons text-center">
-          <button className="btn btn-primary m-2" onClick={handleLoginClick}>{content[language].login}</button>
-          <button className="btn btn-secondary m-2" onClick={handleSignupClick}>{content[language].signup}</button>
+          <button className="btn btn-primary m-2" onClick={() => setShowLogin(true)}>{content[language].login}</button>
+          <button className="btn btn-secondary m-2" onClick={() => setShowSignup(true)}>{content[language].signup}</button>
         </div>
       </header>
-      <select value={language} onChange={handleLanguageChange} className="language-select">
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="hi">हिन्दी</option>
-        <option value="vi">Tiếng Việt</option>
-      </select>
+
+      <LanguageSelector language={language} setLanguage={setLanguage} />
 
       {(showLogin || showSignup) && (
         <div className="modal">
