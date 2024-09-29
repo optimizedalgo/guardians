@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './insured.css';
 import LanguageSelector from './LanguageSelector';
-
+import icon from './icon.webp';
 const Insured = ({ language, setLanguage }) => {
   const navigate = useNavigate();
 
@@ -149,8 +149,11 @@ const Insured = ({ language, setLanguage }) => {
   
 
   return (
-    <div className="insurance-question-page">
+    <div className="insurance-question-page">  
       <div className="question-container">
+      <link rel="icon" href="icon.webp" />
+      <img src={icon} alt="Guardians Icon" className="website-icon" /> {/* Add the icon here */}
+      
         <h1 className="question-title">{content[language].question}</h1>
         <div className="button-container">
           <button

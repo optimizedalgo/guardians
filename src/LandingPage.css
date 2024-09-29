@@ -340,3 +340,9 @@ a:hover {
 }
 
 /* ... (rest of the CSS remains the same) ... */
+.website-icon {
+  width: 50px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Space between icon and heading */
+  border-radius: 50px;
+}

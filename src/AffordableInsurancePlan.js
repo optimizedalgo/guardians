@@ -1,7 +1,7 @@
 import React from 'react';
 import './affordableInsurancePlan.css';
 import { useLocation } from 'react-router-dom';
-
+import icon from './icon.webp';
 const AffordableInsurancePlan = ({ selectedPlan }) => {
   const dataset = [
     { planName: 'essentialPlan', provider: 'Univera Healthcare', county: 'Erie', year: 2024 },
@@ -28,6 +28,9 @@ const AffordableInsurancePlan = ({ selectedPlan }) => {
 
   return (
     <div className="plan-page">
+        <link rel="icon" href="icon.webp" />
+        <img src={icon} alt="Guardians Icon" className="website-icon" /> {/* Add the icon here */}
+      
       <h1>Affordable Insurance Plans</h1>
       <ul>
         {randomPlans.map((plan, index) => (

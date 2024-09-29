@@ -5,6 +5,7 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import LanguageSelector from './LanguageSelector';
+import icon from './icon.webp';
 
 function LandingPage({ language, setLanguage }) {
   const navigate = useNavigate();
@@ -123,6 +124,9 @@ function LandingPage({ language, setLanguage }) {
   return (
     <div className="landing-page">
       <header className="language-section">
+      <link rel="icon" href="icon.webp" />
+        <img src={icon} alt="Guardians Icon" className="website-icon" /> {/* Add the icon here */}
+        
         <h2>{content[language].welcome}</h2>
         <div className="auth-buttons">
           <button className="btn btn-primary" onClick={() => setShowLogin(true)}>{content[language].login}</button>
