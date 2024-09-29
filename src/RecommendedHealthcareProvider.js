@@ -3,9 +3,8 @@ import './recommendedHealthcareProvider.css';
 
 const RecommendedHealthcareProvider = () => {
   const providers = [
-    { name: 'CardioCare', specialty: 'Cardiology', area: '10001' },
-    { name: 'SkinWell', specialty: 'Dermatology', area: '10002' },
-    { name: 'PediHealth', specialty: 'Pediatrics', area: '10003' },
+
+    { name: 'Delta Dental of New York, Inc', specialty: 'Dental', area: 'Erie (Individual Marketplace - Stand Alone Dental Plans)' },
   ];
 
   return (
