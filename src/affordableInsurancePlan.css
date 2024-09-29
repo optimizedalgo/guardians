@@ -1,0 +1,22 @@
+  /* affordableInsurancePlan.css */
+  .plan-page {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .plan-page h1 {
+    color: #61dafb;
+    margin-bottom: 2rem;
+  }
+  
+  .plan-page ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .plan-page li {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+    color: #a0a0a0;
+  }
+  

@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LandingPage from './LandingPage';
 import Insured from './insured';
+import RecommendedHealthcareProvider from './RecommendedHealthcareProvider';
+import AffordableInsurancePlan from './AffordableInsurancePlan';
 
 const App = () => {
   const [language, setLanguage] = useState('en');
@@ -15,6 +17,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage language={language} setLanguage={setLanguage} />} />
         <Route path="/insured" element={<Insured language={language} setLanguage={setLanguage} />} />
+        <Route path="/recommended-healthcare-provider" element={<RecommendedHealthcareProvider />} />
+        <Route path="/affordable-insurance-plan" element={<AffordableInsurancePlan />} />
       </Routes>
     </Router>
   );

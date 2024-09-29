@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
-import LanguageSelector from './LanguageSelector'; // Import the LanguageSelector component
+import LanguageSelector from './LanguageSelector';
 
 function LandingPage({ language, setLanguage }) {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ function LandingPage({ language, setLanguage }) {
   };
 
   const handleLanguageChange = (e) => {
-    setLanguage(e.target.value); // This will update the language globally
+    setLanguage(e.target.value);
   };
 
   const handleLoginClick = () => {
@@ -81,7 +81,7 @@ function LandingPage({ language, setLanguage }) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('Logged in successfully');
-      navigate('/insured'); // Language will be retained when navigating
+      navigate('/insured');
     } catch (error) {
       setError('Invalid email or password');
     } finally {
@@ -122,11 +122,11 @@ function LandingPage({ language, setLanguage }) {
 
   return (
     <div className="landing-page">
-      <header className="language-section text-center">
+      <header className="language-section">
         <h2>{content[language].welcome}</h2>
-        <div className="auth-buttons text-center">
-          <button className="btn btn-primary m-2" onClick={() => setShowLogin(true)}>{content[language].login}</button>
-          <button className="btn btn-secondary m-2" onClick={() => setShowSignup(true)}>{content[language].signup}</button>
+        <div className="auth-buttons">
+          <button className="btn btn-primary" onClick={() => setShowLogin(true)}>{content[language].login}</button>
+          <button className="btn btn-secondary" onClick={() => setShowSignup(true)}>{content[language].signup}</button>
         </div>
       </header>
 
@@ -162,7 +162,7 @@ function LandingPage({ language, setLanguage }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button type="submit" className="btns" disabled={loading}>
+              <button type="submit" className="btn" disabled={loading}>
                 {loading ? 'Loading...' : (showLogin ? content[language].login : content[language].signup)}
               </button>
             </form>

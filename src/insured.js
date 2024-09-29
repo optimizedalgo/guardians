@@ -96,7 +96,6 @@ const Insured = ({ language, setLanguage }) => {
     }
   };  
 
-
   const handleAnswer = (answer) => {
     setIsYesSelected(answer === 'Yes');
   };
@@ -109,9 +108,6 @@ const Insured = ({ language, setLanguage }) => {
     border: '2px solid #61dafb',
     backgroundColor: '#282c34',
     color: '#a0a0a0',
-    appearance: 'none',
-    WebkitAppearance: 'none',
-    MozAppearance: 'none',
   };
 
   const selectStyle = {
@@ -123,22 +119,19 @@ const Insured = ({ language, setLanguage }) => {
     paddingRight: '2.5rem',
   };
 
-  const numberInputStyle = {
-    ...inputStyle,
-    // Disable spinner buttons
-    '&::-webkit-inner-spin-button, &::-webkit-outer-spin-button': {
-      '-webkit-appearance': 'none',
-      margin: 0,
-    },
-    '&[type=number]': {
-      '-moz-appearance': 'textfield',
-    },
-  };
-
   const handleNumberInput = (setter) => (e) => {
     const value = e.target.value;
     if (value === '' || (Number(value) > 0 && !value.includes('.'))) {
       setter(value);
+    }
+  };
+
+  // Submit handler for the forms
+  const handleSubmit = () => {
+    if (isYesSelected) {
+      navigate('/recommended-healthcare-provider');  // Navigate to "Recommended Healthcare Provider" page
+    } else if (isYesSelected === false) {
+      navigate('/affordable-insurance-plan');  // Navigate to "Affordable Insurance Plan" page
     }
   };
 
@@ -163,6 +156,7 @@ const Insured = ({ language, setLanguage }) => {
 
         {isYesSelected === true && (
           <div className="boxes-container">
+            {/* Insurance form for Yes */}
             <div className="input-group">
               <label>{content[language].provider}</label>
               <select
@@ -217,16 +211,21 @@ const Insured = ({ language, setLanguage }) => {
                 <option value="Pediatrics">Pediatrics</option>
               </select>
             </div>
+
+            <button className="btn submit-btn" onClick={handleSubmit}>
+              Submit
+            </button>
           </div>
         )}
 
-{isYesSelected === false && (
+        {isYesSelected === false && (
           <div className="boxes-container">
+            {/* Insurance form for No */}
             <div className="input-group">
               <label>{content[language].age}</label>
               <input
                 type="number"
-                style={numberInputStyle}
+                style={inputStyle}
                 value={age}
                 onChange={handleNumberInput(setAge)}
                 placeholder={content[language].age}
@@ -238,7 +237,7 @@ const Insured = ({ language, setLanguage }) => {
               <label>{content[language].affordablePay}</label>
               <input
                 type="number"
-                style={numberInputStyle}
+                style={inputStyle}
                 value={affordablePay}
                 onChange={handleNumberInput(setAffordablePay)}
                 placeholder={content[language].affordablePay}
@@ -270,6 +269,10 @@ const Insured = ({ language, setLanguage }) => {
                 ))}
               </select>
             </div>
+
+            <button className="btn submit-btn" onClick={handleSubmit}>
+              Submit
+            </button>
           </div>
         )}
       </div>
