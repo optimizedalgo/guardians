@@ -344,5 +344,5 @@ a:hover {
   width: 50px; /* Adjust as needed */
   height: auto; /* Maintain aspect ratio */
   margin-right: 10px; /* Space between icon and heading */
-  border-radius: 10px;
+  border-radius: 50px;
 }
